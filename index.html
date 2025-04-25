@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ChatGPT</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="chat-container">
+      <div class="chat-header">ChatGPT</div>
+      <div class="chat-messages" id="chat-messages">
+        <div class="message bot">
+          <div class="avatar">🤖</div>
+          <div class="text">Hello! How can I help you today?</div>
+        </div>
+      </div>
+      <div class="chat-input">
+        <input
+          type="text"
+          id="user-input"
+          placeholder="Send a message..."
+          autocomplete="off"
+        />
+        <button onclick="sendMessage()">➤</button>
+      </div>
+    </div>
+
+    <script>
+      function sendMessage() {
+        const input = document.getElementById("user-input");
+        const message = input.value.trim();
+        if (message === "") return;
+
+        const userMsg = document.createElement("div");
+        userMsg.className = "message user";
+        userMsg.innerHTML = `<div class="avatar">🧑</div><div class="text">${message}</div>`;
+
+        const botMsg = document.createElement("div");
+        botMsg.className = "message bot";
+        botMsg.innerHTML = `<div class="avatar">🤖</div><div class="text">Thinking... 🤔</div>`;
+
+        const chat = document.getElementById("chat-messages");
+        chat.appendChild(userMsg);
+        chat.appendChild(botMsg);
+
+        input.value = "";
+        chat.scrollTop = chat.scrollHeight;
+
+        setTimeout(() => {
+          botMsg.querySelector(".text").textContent = "fuck you";
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>
